@@ -1,6 +1,6 @@
 name: state_illustrator
 description: "A Flutter package for creating and visualizing custom state illustrations."
-version: 1.0.0
+version: 2.0.0
 homepage: https://github.com/ASHISH1317/state_illustrator
 repository: https://github.com/ASHISH1317/state_illustrator
 issue_tracker: https://github.com/ASHISH1317/state_illustrator/issues

@@ -1,5 +1,10 @@
 # Changelog
 
+## [2.0.0] - 2026-02-12
+
+- Added option to add config 
+- Custom height, width and padding options
+
 ## [1.0.0] - 2026-02-12
 
 ### Initial Release

@@ -41,6 +41,21 @@ class IllustrationConfig {
   /// Optional asset width
   final double? assetWidth;
 
+  /// Title spacing
+  final double? titleSpacing;
+
+  /// Subtitle spacing
+  final double? subtitleSpacing;
+
+  /// Padding for the illustration container.
+  final EdgeInsets? padding;
+
+  /// Height (Custom)
+  final double? height;
+
+  /// Width (Custom)
+  final double? width;
+
   /// Creates an [IllustrationConfig].
   ///
   /// All parameters are optional; you can provide only the elements
@@ -55,7 +70,27 @@ class IllustrationConfig {
     this.assetHeight,
     this.assetWidth,
     this.button,
+    this.subtitleSpacing,
+    this.titleSpacing,
+    this.padding,
+    this.width,
+    this.height,
   });
+
+  /// Has title spacing
+  bool get hasTitleSpacing => titleSpacing != null;
+
+  /// Has subtitle spacing
+  bool get hasSubtitleSpacing => subtitleSpacing != null;
+
+  /// Has title
+  bool get hasTitle => title != null && title!.isNotEmpty;
+
+  /// Has subtitle
+  bool get hasSubtitle => subtitle != null && subtitle!.isNotEmpty;
+
+  /// Has asset
+  bool get hasAsset => assetPath != null && assetPath!.isNotEmpty;
 }
 
 /// Theme customization for the [StateIllustrator] widget.
@@ -88,13 +123,13 @@ class IllustratorTheme {
 /// [customEmptyConfig], or [customErrorConfig].
 class GlobalIllustratorConfig {
   /// Illustration configuration to show while the screen is loading.
-  final IllustrationConfig loadingConfig;
+  final IllustrationConfig? loadingConfig;
 
   /// Illustration configuration to show when the screen is empty.
-  final IllustrationConfig emptyConfig;
+  final IllustrationConfig? emptyConfig;
 
   /// Illustration configuration to show when an error occurs.
-  final IllustrationConfig errorConfig;
+  final IllustrationConfig? errorConfig;
 
   /// Optional theme customization for all illustrations.
   final IllustratorTheme? theme;
@@ -103,9 +138,9 @@ class GlobalIllustratorConfig {
   ///
   /// All of [loadingConfig], [emptyConfig], and [errorConfig] are required.
   const GlobalIllustratorConfig({
-    required this.loadingConfig,
-    required this.emptyConfig,
-    required this.errorConfig,
+    this.loadingConfig,
+    this.emptyConfig,
+    this.errorConfig,
     this.theme,
   });
 }

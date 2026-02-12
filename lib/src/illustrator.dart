@@ -168,12 +168,18 @@ class StateIllustrator extends StatelessWidget {
       final AssetType type =
           config.assetType ?? _detectAssetType(config.assetPath!);
 
+      bool isPackageAsset(String assetPath) {
+        return identical(assetPath, DefaultIllustrations.loading) ||
+            identical(assetPath, DefaultIllustrations.empty) ||
+            identical(assetPath, DefaultIllustrations.error);
+      }
+
       try {
         switch (type) {
           case AssetType.lottie:
             assetWidget = Lottie.asset(
               config.assetPath!,
-              package: 'state_illustrator', // package name for asset loading
+              package: _package(isPackageAsset, config),
               height: config.assetHeight ?? 150,
               width: config.assetWidth ?? 150,
               errorBuilder: (_, __, ___) => const Icon(Icons.error, size: 48),
@@ -182,7 +188,7 @@ class StateIllustrator extends StatelessWidget {
           case AssetType.svg:
             assetWidget = SvgPicture.asset(
               config.assetPath!,
-              package: 'state_illustrator',
+              package: _package(isPackageAsset, config),
               height: config.assetHeight ?? 150,
               width: config.assetWidth ?? 150,
             );
@@ -190,7 +196,7 @@ class StateIllustrator extends StatelessWidget {
           case AssetType.png:
             assetWidget = Image.asset(
               config.assetPath!,
-              package: 'state_illustrator',
+              package: _package(isPackageAsset, config),
               height: config.assetHeight ?? 150,
               width: config.assetWidth ?? 150,
             );
@@ -205,18 +211,20 @@ class StateIllustrator extends StatelessWidget {
       liveRegion: true,
       label: config.title ?? "Screen state",
       child: Container(
-        width: double.infinity,
-        height: double.infinity,
+        width: config.width ?? double.infinity,
+        height: config.height ?? double.infinity,
         color: configTheme?.backgroundColor ?? Colors.white,
         child: Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
+            padding: config.padding ?? EdgeInsets.all(24),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 if (assetWidget != null) assetWidget,
-                if (config.title != null) ...[
-                  const SizedBox(height: 16),
+                if (config.hasTitle) ...[
+                  SizedBox(
+                    height: config.titleSpacing ?? 16,
+                  ),
                   Text(
                     config.title!,
                     style: configTheme?.titleStyle ??
@@ -226,8 +234,10 @@ class StateIllustrator extends StatelessWidget {
                         ),
                   ),
                 ],
-                if (config.subtitle != null) ...[
-                  const SizedBox(height: 8),
+                if (config.hasSubtitle) ...[
+                  SizedBox(
+                    height: config.subtitleSpacing ?? 8,
+                  ),
                   Text(
                     config.subtitle!,
                     textAlign: TextAlign.center,
@@ -257,6 +267,14 @@ class StateIllustrator extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  /// Package check
+  String? _package(
+    bool Function(String assetPath) isPackageAsset,
+    IllustrationConfig config,
+  ) {
+    return isPackageAsset(config.assetPath!) ? 'state_illustrator' : null;
   }
 
   /// Returns the theme from global config if provided.
