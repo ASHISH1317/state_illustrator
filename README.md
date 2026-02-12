@@ -7,6 +7,14 @@ A Flutter helper widget to display **loading**, **empty**, **error**, and **succ
 
 ---
 
+## 🎬 GIF Previews
+
+| Loading                                                                                            | Empty                                                                                          | Error                                                                                          |
+|----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| ![Loading](https://raw.githubusercontent.com/ASHISH1317/state_illustrator/main/assets/loading.gif) | ![Empty](https://raw.githubusercontent.com/ASHISH1317/state_illustrator/main/assets/empty.gif) | ![Error](https://raw.githubusercontent.com/ASHISH1317/state_illustrator/main/assets/error.gif) |
+
+---
+
 ## 🚀 Features
 
 - 📦 Built‑in support for **loading**, **empty**, **error**, and **success** states
