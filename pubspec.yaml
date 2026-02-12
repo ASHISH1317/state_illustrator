@@ -1,7 +1,9 @@
 name: state_illustrator
-description: "A new Flutter project."
+description: "A Flutter package for creating and visualizing custom state illustrations."
 version: 1.0.0
-homepage:
+homepage: https://github.com/ASHISH1317/state_illustrator
+repository: https://github.com/ASHISH1317/state_illustrator
+issue_tracker: https://github.com/ASHISH1317/state_illustrator/issues
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
